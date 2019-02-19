@@ -1,26 +1,29 @@
-{ mkDerivation, aeson, attoparsec, base, base16-bytestring
-, byteable, bytestring, case-insensitive, conduit, containers
-, cryptohash, data-default, failure, hashable, hspec, HTTP
-, http-conduit, http-types, network, old-locale, stdenv, text, time
-, unordered-containers, vector
+{ mkDerivation, aeson, base, base-compat, base16-bytestring, binary
+, binary-orphans, bytestring, containers, cryptohash-sha1, deepseq
+, deepseq-generics, exceptions, file-embed, hashable, hspec
+, hspec-discover, http-client, http-client-tls, http-link-header
+, http-types, iso8601-time, mtl, network-uri, semigroups, stdenv
+, tagged, text, time, tls, transformers, transformers-compat
+, unordered-containers, vector, vector-instances
 }:
 mkDerivation {
   pname = "github";
-  version = "0.14.0";
+  version = "0.21";
   src = ./.;
-  buildDepends = [
-    aeson attoparsec base base16-bytestring byteable bytestring
-    case-insensitive conduit containers cryptohash data-default failure
-    hashable HTTP http-conduit http-types network old-locale text time
+  libraryHaskellDepends = [
+    aeson base base-compat base16-bytestring binary binary-orphans
+    bytestring containers cryptohash-sha1 deepseq deepseq-generics
+    exceptions hashable http-client http-client-tls http-link-header
+    http-types iso8601-time mtl network-uri semigroups tagged text time
+    tls transformers transformers-compat unordered-containers vector
+    vector-instances
+  ];
+  testHaskellDepends = [
+    aeson base base-compat bytestring file-embed hspec
     unordered-containers vector
   ];
-  testDepends = [
-    aeson attoparsec base base16-bytestring byteable bytestring
-    case-insensitive conduit containers cryptohash data-default failure
-    hashable hspec HTTP http-conduit http-types network old-locale text
-    time unordered-containers vector
-  ];
-  homepage = "https://github.com/fpco/github";
-  description = "Access to the Github API, v3";
+  testToolDepends = [ hspec-discover ];
+  homepage = "https://github.com/phadej/github";
+  description = "Access to the GitHub API, v3";
   license = stdenv.lib.licenses.bsd3;
 }
