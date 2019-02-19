@@ -371,6 +371,7 @@ makeHttpRequest auth r = case r of
     getOAuthHeader :: Auth -> RequestHeaders
     getOAuthHeader (OAuth token)             = [("Authorization", "token " <> token)]
     getOAuthHeader (EnterpriseOAuth _ token) = [("Authorization", "token " <> token)]
+    getOAuthHeader (Bearer token)            = [("Authorization", "Bearer " <> token)]
     getOAuthHeader _                         = []
 
 -- | Query @Link@ header with @rel=next@ from the request headers.
