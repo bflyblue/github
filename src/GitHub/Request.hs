@@ -222,6 +222,16 @@ instance a ~ LBS.ByteString => ParseResponse 'MtPatch a where parseResponse _ = 
 instance a ~ LBS.ByteString => ParseResponse 'MtSha   a where parseResponse _ = Tagged . return . responseBody
 
 -------------------------------------------------------------------------------
+-- Preview JSON
+-------------------------------------------------------------------------------
+--
+instance Accept 'MtMachineManPreview where
+    contentType = Tagged "application/vnd.github.machine-man-preview+json"
+
+instance FromJSON a => ParseResponse 'MtMachineManPreview a where
+    parseResponse _ res = Tagged (parseResponseJSON res)
+
+-------------------------------------------------------------------------------
 -- Redirect
 -------------------------------------------------------------------------------
 

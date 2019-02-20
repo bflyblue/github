@@ -115,6 +115,8 @@ data MediaType
     | MtRedirect -- ^ <https://developer.github.com/v3/repos/contents/#get-archive-link>
     | MtStatus   -- ^ Parse status
     | MtUnit     -- ^ Always succeeds
+
+    | MtMachineManPreview -- ^ @application/vnd.github.machine-man-preview+json@ <https://developer.github.com/v3/apps/>
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Typeable, Data, Generic)
 
 ------------------------------------------------------------------------------
