@@ -117,6 +117,7 @@ data MediaType
     | MtUnit     -- ^ Always succeeds
 
     | MtMachineManPreview -- ^ @application/vnd.github.machine-man-preview+json@ <https://developer.github.com/v3/apps/>
+    | MtAntiopePreview    -- ^ @application/vnd.github.antiope-preview+json@ <https://developer.github.com/v3/checks/>
   deriving (Eq, Ord, Read, Show, Enum, Bounded, Typeable, Data, Generic)
 
 ------------------------------------------------------------------------------
