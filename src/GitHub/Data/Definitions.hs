@@ -140,6 +140,10 @@ instance FromJSON OwnerType where
             "Organization"  -> pure $ OwnerOrganization
             _               -> fail $ "Unknown owner type: " ++ T.unpack t
 
+instance ToJSON OwnerType where
+  toJSON OwnerUser         = toJSON ("User" :: Text)
+  toJSON OwnerOrganization = toJSON ("Organization" :: Text)
+
 instance FromJSON SimpleUser where
     parseJSON = withObject "SimpleUser" $ \obj -> do
         SimpleUser
@@ -164,6 +168,20 @@ instance FromJSON SimpleOwner where
             <*> obj .: "url"
             <*> obj .: "avatar_url"
             <*> obj .: "type"
+
+instance ToJSON SimpleOwner where
+  toJSON (SimpleOwner { simpleOwnerId        = oid
+                      , simpleOwnerLogin     = login
+                      , simpleOwnerUrl       = ownerUrl
+                      , simpleOwnerAvatarUrl = avatarUrl
+                      , simpleOwnerType      = oty
+                      }) = object
+                      [ "id"                .= oid
+                      , "login"             .= login
+                      , "url"               .= ownerUrl
+                      , "avatar_url"        .= avatarUrl
+                      , "type"              .= oty
+                      ]
 
 parseUser :: Object -> Parser User
 parseUser obj = User

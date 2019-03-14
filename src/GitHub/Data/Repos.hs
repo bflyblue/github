@@ -221,6 +221,14 @@ instance FromJSON RepoRef where
         <$> o .: "owner"
         <*> o .: "name"
 
+instance ToJSON RepoRef where
+  toJSON (RepoRef { repoRefRepo  = name
+                  , repoRefOwner = owner
+                  }) = object
+                  [ "name"      .= name
+                  , "owner"     .= owner
+                  ]
+
 instance FromJSON Contributor where
     parseJSON = withObject "Contributor" $ \o -> do
         t <- o .: "type"
