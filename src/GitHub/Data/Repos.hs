@@ -180,6 +180,70 @@ instance FromJSON Repo where
         <*> o .: "hooks_url"
         <*> o .: "stargazers_count"
 
+instance ToJSON Repo where
+  toJSON (Repo { repoSshUrl          = sshUrl
+               , repoDescription     = description
+               , repoCreatedAt       = createdAt
+               , repoHtmlUrl         = htmlUrl
+               , repoSvnUrl          = svnUrl
+               , repoForks           = forks
+               , repoHomepage        = homePage
+               , repoFork            = fork
+               , repoGitUrl          = gitUrl
+               , repoPrivate         = private
+               , repoArchived        = archived
+               , repoCloneUrl        = cloneUrl
+               , repoSize            = size
+               , repoUpdatedAt       = updatedAt
+               , repoWatchers        = watchers
+               , repoOwner           = owner
+               , repoName            = name
+               , repoLanguage        = language
+               , repoDefaultBranch   = defaultBranch
+               , repoPushedAt        = pushedAt
+               , repoId              = rid
+               , repoUrl             = url
+               , repoOpenIssues      = openIssues
+               , repoHasWiki         = hasWiki
+               , repoHasIssues       = hasIssues
+               , repoHasDownloads    = hasDownloads
+               , repoParent          = parent
+               , repoSource          = source
+               , repoHooksUrl        = hooksUrl
+               , repoStargazersCount = stargazersCount
+               }) = object
+               [ "ssh_url"          .= sshUrl
+               , "description"      .= description
+               , "created_at"       .= createdAt
+               , "html_url"         .= htmlUrl
+               , "svn_url"          .= svnUrl
+               , "forks"            .= forks
+               , "homepage"         .= homePage
+               , "fork"             .= fork
+               , "git_url"          .= gitUrl
+               , "private"          .= private
+               , "archived"         .= archived
+               , "clone_url"        .= cloneUrl
+               , "size"             .= size
+               , "updated_at"       .= updatedAt
+               , "watchers"         .= watchers
+               , "owner"            .= owner
+               , "name"             .= name
+               , "language"         .= language
+               , "default_branch"   .= defaultBranch
+               , "pushed_at"        .= pushedAt
+               , "id"               .= rid
+               , "url"              .= url
+               , "open_issues"      .= openIssues
+               , "has_wiki"         .= hasWiki
+               , "has_issues"       .= hasIssues
+               , "has_downloads"    .= hasDownloads
+               , "parent"           .= parent
+               , "source"           .= source
+               , "hooks_url"        .= hooksUrl
+               , "stargazers_count" .= stargazersCount
+               ]
+
 instance ToJSON NewRepo where
   toJSON (NewRepo { newRepoName         = name
                   , newRepoDescription  = description
